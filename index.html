@@ -10,9 +10,9 @@
     :root {
       color-scheme: light;
       --paper: #f6f5f2;
-      --ink: #171717;
-      --muted: #77756f;
-      --line: rgba(23, 23, 23, .12);
+      --ink: #34343b;
+      --muted: #74727a;
+      --line: rgba(52, 52, 59, .12);
       --accent: #6d5dfc;
       --accent-soft: #dcd7ff;
       --lime: #d7f36a;
@@ -32,7 +32,7 @@
       margin: 0;
       background: var(--paper);
       color: var(--ink);
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.55;
     }
     a { color: inherit; }
@@ -63,25 +63,20 @@
       -webkit-backdrop-filter: blur(18px);
     }
     .nav-wrap {
-      display: flex;
+      display: grid;
       width: min(var(--content), calc(100% - 48px));
       min-height: 68px;
       margin: 0 auto;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-    }
-    .brand {
-      flex: 0 0 auto;
-      font-size: 14px;
-      font-weight: 720;
-      letter-spacing: -.035em;
-      text-decoration: none;
+      gap: 20px;
     }
     .site-nav {
       display: flex;
+      grid-column: 2;
       min-width: 0;
       align-items: center;
+      justify-content: center;
       gap: clamp(14px, 2vw, 26px);
       overflow-x: auto;
       scrollbar-width: none;
@@ -91,19 +86,48 @@
       flex: 0 0 auto;
       color: #65635e;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 500;
       text-decoration: none;
       transition: color .2s ease;
     }
     .site-nav a:hover, .site-nav a:focus-visible { color: var(--accent); }
+    .social-links {
+      display: flex;
+      grid-column: 3;
+      align-items: center;
+      justify-self: end;
+      gap: 8px;
+    }
+    .social-link {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--ink);
+      text-decoration: none;
+      transition: transform .2s ease, color .2s ease, background .2s ease;
+    }
+    .social-link.linkedin { color: #0a66c2; }
+    .social-link.linkedin:hover, .social-link.linkedin:focus-visible {
+      background: rgba(10, 102, 194, .1);
+      color: #0a66c2;
+    }
+    .social-link:hover, .social-link:focus-visible {
+      transform: translateY(-2px);
+      background: rgba(109, 93, 252, .09);
+      color: var(--accent);
+    }
+    .social-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .social-icon { display: block; width: 18px; height: 18px; fill: currentColor; }
 
     main { overflow: clip; }
     .container { width: min(var(--content), calc(100% - 48px)); margin-inline: auto; }
     .hero {
       position: relative;
       display: grid;
-      min-height: min(790px, calc(100svh - 68px));
-      padding-block: clamp(90px, 13vw, 170px) 100px;
+      min-height: min(440px, calc(100svh - 68px));
+      padding-block: clamp(32px, 5vw, 56px) 44px;
       align-items: center;
       isolation: isolate;
     }
@@ -126,10 +150,10 @@
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      margin: 0 0 24px;
+      margin: 0 0 18px;
       color: var(--muted);
-      font-size: 12px;
-      font-weight: 650;
+      font-size: 11px;
+      font-weight: 600;
       letter-spacing: .12em;
       text-transform: uppercase;
     }
@@ -143,33 +167,31 @@
     h1, h2, h3, p { margin-top: 0; }
     .hero h1 {
       max-width: 900px;
-      margin-bottom: 28px;
-      font-size: clamp(48px, 8vw, 100px);
-      font-weight: 650;
-      letter-spacing: -.085em;
-      line-height: .96;
+      margin-bottom: 20px;
+      font-size: clamp(46px, 7vw, 84px);
+      font-weight: 500;
+      letter-spacing: -.075em;
+      line-height: 1;
     }
     .hero h1 .hero-highlight {
-      color: transparent;
-      background: linear-gradient(110deg, var(--accent), #e45b9d 48%, #f39b67 78%, var(--accent));
-      background-size: 220% 100%;
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      margin-right: -.1em;
+      padding-right: .1em;
+      color: var(--accent);
       font-family: Georgia, "Times New Roman", serif;
       font-weight: 400;
       font-style: italic;
-      letter-spacing: -.09em;
-      animation: headline-shimmer 6s ease-in-out infinite alternate;
+      letter-spacing: -.035em;
+      text-shadow: 0 6px 24px rgba(109, 93, 252, .18);
+      animation: headline-glow 6s ease-in-out infinite alternate;
     }
     .hero h1 .hero-dot { color: var(--accent); }
     .hero-copy {
-      max-width: 470px;
-      margin-bottom: 30px;
+      max-width: 690px;
+      margin-bottom: 22px;
       color: #62605c;
-      font-size: clamp(16px, 2vw, 19px);
+      font-size: clamp(15px, 1.5vw, 17px);
     }
-    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
     .button {
       display: inline-flex;
       min-height: 48px;
@@ -182,7 +204,7 @@
       background: var(--ink);
       color: var(--white);
       font-size: 13px;
-      font-weight: 650;
+      font-weight: 500;
       text-decoration: none;
       transition: transform .25s ease, background .25s ease, border-color .25s ease, color .25s ease;
     }
@@ -193,52 +215,53 @@
       color: var(--white);
     }
     .button:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 3px; }
+    .button:disabled { cursor: not-allowed; }
     .arrow { display: inline-block; transition: transform .2s ease; }
     .button:hover .arrow { transform: translate(3px, -2px); }
     .hero-note {
       position: absolute;
       right: 0;
-      bottom: 42px;
+      bottom: 16px;
       color: var(--muted);
       font-size: 11px;
       letter-spacing: .04em;
     }
 
-    .section { padding-block: clamp(82px, 11vw, 142px); border-top: 1px solid var(--line); }
+    .section { padding-block: clamp(44px, 6vw, 78px); border-top: 1px solid var(--line); }
     .section-heading {
       display: grid;
-      margin-bottom: clamp(36px, 6vw, 72px);
+      margin-bottom: clamp(20px, 3vw, 36px);
       grid-template-columns: minmax(0, .7fr) minmax(240px, 1fr);
       align-items: end;
-      gap: 32px;
+      gap: 24px;
     }
     .section-kicker {
       display: block;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
       color: var(--accent);
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 10px;
+      font-weight: 600;
       letter-spacing: .14em;
       text-transform: uppercase;
     }
     .section h2 {
       margin: 0;
-      font-size: clamp(36px, 5vw, 62px);
-      font-weight: 620;
-      letter-spacing: -.075em;
-      line-height: .98;
+      font-size: clamp(32px, 4.4vw, 52px);
+      font-weight: 500;
+      letter-spacing: -.06em;
+      line-height: 1.04;
     }
     .section-intro {
       max-width: 480px;
       margin: 0;
       color: var(--muted);
-      font-size: clamp(15px, 1.7vw, 18px);
+      font-size: clamp(14px, 1.4vw, 16px);
     }
-    .about-grid { display: grid; grid-template-columns: 1fr 1.12fr; gap: clamp(32px, 8vw, 110px); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.12fr; gap: clamp(24px, 5vw, 60px); }
     .about-mark {
       display: grid;
-      min-height: 330px;
-      padding: 36px;
+      min-height: 240px;
+      padding: 28px;
       align-content: end;
       border-radius: var(--radius);
       background: var(--lime);
@@ -246,14 +269,14 @@
     }
     .about-mark span {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(110px, 19vw, 240px);
+      font-size: clamp(96px, 16vw, 200px);
       font-style: italic;
       letter-spacing: -.12em;
       line-height: .8;
       opacity: .8;
     }
     .about-copy { align-self: center; }
-    .about-copy p { margin-bottom: 20px; color: #595752; font-size: 17px; }
+    .about-copy p { margin-bottom: 14px; color: #595861; font-size: 15px; }
     .placeholder {
       display: inline;
       padding: 2px 6px;
@@ -265,22 +288,22 @@
     .experience-list { border-top: 1px solid var(--line); }
     .experience-item {
       display: grid;
-      padding: 27px 0;
+      padding: 16px 0;
       grid-template-columns: 170px 1fr auto;
       gap: 28px;
       border-bottom: 1px solid var(--line);
     }
     .experience-date, .experience-company { color: var(--muted); font-size: 13px; }
-    .experience-role { margin: 0 0 7px; font-size: clamp(19px, 2.4vw, 25px); letter-spacing: -.045em; }
+    .experience-role { margin: 0 0 7px; font-size: clamp(17px, 2vw, 21px); font-weight: 500; letter-spacing: -.035em; }
     .experience-detail { margin: 0; color: var(--muted); font-size: 14px; }
 
     .client-panel {
-      padding: clamp(20px, 4vw, 44px);
+      padding: clamp(16px, 3vw, 32px);
       border-radius: var(--radius);
       background: var(--white);
     }
-    .section#clients { padding-block: clamp(58px, 8vw, 100px); }
-    .section#clients .section-heading { margin-bottom: clamp(26px, 4vw, 48px); }
+    .section#clients { padding-block: clamp(40px, 6vw, 72px); }
+    .section#clients .section-heading { margin-bottom: clamp(20px, 3vw, 34px); }
     .client-list {
       display: grid;
       margin: 0;
@@ -290,44 +313,65 @@
     }
     .client-list li {
       display: flex;
-      min-height: 100px;
-      padding: 14px 10px;
+      min-height: 84px;
+      padding: 10px 8px;
       align-items: center;
       justify-content: center;
       border-right: 1px solid rgba(23, 23, 23, .1);
       border-bottom: 1px solid rgba(23, 23, 23, .1);
       text-align: center;
     }
-    .client-logo-image { display: block; width: auto; height: auto; max-width: 140px; max-height: 58px; object-fit: contain; }
+    .client-logo-image { display: block; width: auto; height: auto; max-width: 140px; max-height: 50px; object-fit: contain; }
     .client-list li:nth-child(4n) { border-right: 0; }
     .client-list li:nth-last-child(-n+4) { border-bottom: 0; }
 
-    .skills-layout { display: grid; grid-template-columns: .7fr 1fr; gap: clamp(32px, 8vw, 110px); }
-    .skills-note { max-width: 340px; color: var(--muted); }
-    .skill-groups { display: grid; gap: 27px; }
-    .skill-group { padding-bottom: 24px; border-bottom: 1px solid var(--line); }
-    .skill-group:last-child { padding-bottom: 0; border-bottom: 0; }
+    .skills-subheading { margin: 0 0 12px; font-size: 17px; font-weight: 500; letter-spacing: -.03em; }
+    .skill-highlights { display: grid; margin-bottom: 20px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .skill-highlight { min-height: 104px; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+    .skill-highlight h3 { margin: 0 0 6px; font-size: 14px; font-weight: 500; letter-spacing: -.025em; }
+    .skill-highlight p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .skill-groups { display: grid; gap: 8px; }
+    .skill-accordion { border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.7); overflow: hidden; }
+    .skill-accordion summary {
+      display: flex;
+      padding: 14px 18px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      list-style: none;
+    }
+    .skill-accordion summary::-webkit-details-marker { display: none; }
+    .skill-accordion summary::after { color: var(--accent); content: "+"; font-size: 20px; font-weight: 400; line-height: 1; }
+    .skill-accordion[open] summary::after { content: "−"; }
+    .skill-accordion summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
+    .skill-accordion-count { margin-left: auto; color: var(--muted); font-size: 11px; font-weight: 500; }
+    .skill-accordion-content { padding: 0 18px 16px; }
+    .skill-accordion-content .skill-group { padding-top: 12px; border-top: 1px solid var(--line); }
+    .skill-accordion-content .skill-group:first-child { padding-top: 0; border-top: 0; }
     .skill-group h3 {
-      margin-bottom: 14px;
+      margin: 0 0 8px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 400;
       letter-spacing: -.03em;
     }
-    .tags { display: flex; flex-wrap: wrap; gap: 9px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
     .tag {
-      padding: 9px 14px;
+      padding: 6px 11px;
       border: 1px solid var(--line);
       border-radius: 999px;
       color: #595752;
-      font-size: 12px;
+      font-size: 11px;
     }
 
-    .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
     .cert-card {
       display: flex;
-      min-height: 190px;
-      padding: 24px;
+      min-height: 148px;
+      padding: 16px;
       flex-direction: column;
       justify-content: space-between;
       border: 1px solid var(--line);
@@ -338,18 +382,18 @@
     }
     .cert-card:hover { transform: translateY(-5px); border-color: var(--accent); background: #fff; }
     .cert-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-    .cert-icon { color: var(--accent); font-size: 25px; }
-    .cert-card h3 { margin: 0 0 5px; font-size: 17px; letter-spacing: -.04em; }
+    .cert-icon { color: var(--accent); font-size: 23px; }
+    .cert-card h3 { margin: 0 0 5px; font-size: 15px; font-weight: 500; letter-spacing: -.025em; }
     .cert-card p { margin: 0; color: var(--muted); font-size: 12px; }
 
     .projects-section { background: var(--ink); color: var(--white); }
     .projects-section .section-kicker { color: var(--lime); }
     .projects-section .section-intro { color: #aaa9a4; }
-    .project-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 18px; }
+    .project-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 14px; }
     .project-card {
       display: flex;
-      min-height: 370px;
-      padding: clamp(24px, 4vw, 42px);
+      min-height: 280px;
+      padding: clamp(20px, 3.5vw, 32px);
       flex-direction: column;
       justify-content: space-between;
       border-radius: 22px;
@@ -359,31 +403,32 @@
       transition: transform .3s ease, background .3s ease;
     }
     .project-card:hover { transform: translateY(-6px); background: #34313f; }
-    .project-card:first-child { min-height: 470px; background: linear-gradient(145deg, #6d5dfc, #382a85 70%); }
+    .project-card:first-child { min-height: 340px; background: linear-gradient(145deg, #6d5dfc, #382a85 70%); }
     .project-card:first-child:hover { background: linear-gradient(145deg, #796bff, #403090 70%); }
     .project-number { color: rgba(255,255,255,.62); font-size: 12px; }
     .project-bottom { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
-    .project-card h3 { margin: 0 0 9px; font-size: clamp(25px, 4vw, 44px); letter-spacing: -.07em; line-height: 1; }
+    .project-card h3 { margin: 0 0 9px; font-size: clamp(23px, 3.2vw, 36px); font-weight: 500; letter-spacing: -.05em; line-height: 1.08; }
     .project-card p { max-width: 370px; margin: 0; color: rgba(255,255,255,.7); font-size: 13px; }
-    .project-arrow { flex: 0 0 auto; font-size: 26px; }
+    .project-arrow { flex: 0 0 auto; font-size: 23px; }
 
     .resume-panel {
       display: flex;
-      padding: clamp(28px, 6vw, 66px);
+      padding: clamp(20px, 4vw, 48px);
       align-items: center;
       justify-content: space-between;
-      gap: 30px;
+      gap: 20px;
       border-radius: var(--radius);
       background: var(--accent-soft);
     }
-    .resume-panel h3 { margin: 0 0 8px; font-size: clamp(27px, 4vw, 42px); letter-spacing: -.065em; }
+    .resume-panel h3 { margin: 0 0 8px; font-size: clamp(24px, 3vw, 34px); font-weight: 500; letter-spacing: -.045em; }
     .resume-panel p { margin: 0; color: #5d5683; }
+    .resume-actions { display: flex; flex-wrap: wrap; gap: 10px; }
     .resume-panel .button { flex: 0 0 auto; }
 
-    .contact-section { padding-bottom: 74px; }
+    .contact-section { padding-bottom: 42px; }
     .contact-card {
       position: relative;
-      padding: clamp(32px, 7vw, 78px);
+      padding: clamp(24px, 5vw, 56px);
       border-radius: var(--radius);
       background: var(--lime);
       overflow: hidden;
@@ -400,13 +445,13 @@
       content: "";
       pointer-events: none;
     }
-    .contact-card h2 { max-width: 750px; margin-bottom: 24px; font-size: clamp(48px, 8vw, 94px); }
-    .contact-card p { max-width: 420px; margin-bottom: 28px; color: #535a37; }
+    .contact-card h2 { max-width: 750px; margin-bottom: 16px; font-size: clamp(36px, 5vw, 56px); font-weight: 500; }
+    .contact-card p { max-width: 420px; margin-bottom: 20px; color: #535a37; }
     .contact-card .button { border-color: var(--ink); }
     .site-footer {
       display: flex;
       width: min(var(--content), calc(100% - 48px));
-      min-height: 80px;
+      min-height: 64px;
       margin-inline: auto;
       align-items: center;
       justify-content: space-between;
@@ -417,22 +462,26 @@
     .footer-links { display: flex; gap: 18px; }
     .footer-links a { text-decoration: none; }
     .footer-links a:hover { color: var(--ink); }
+    .location-link { display: inline-flex; align-items: center; gap: 5px; }
+    .location-icon { width: 14px; height: 14px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.8; }
 
     [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
     [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
     @keyframes float { from { transform: translate3d(0, -8px, 0) scale(.98); } to { transform: translate3d(0, 15px, 0) scale(1.03); } }
-    @keyframes headline-shimmer { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+    @keyframes headline-glow { from { text-shadow: 0 4px 16px rgba(109, 93, 252, .12); } to { text-shadow: 0 8px 26px rgba(109, 93, 252, .3); } }
 
     @media (max-width: 800px) {
-      .nav-wrap { width: calc(100% - 32px); min-height: 62px; gap: 18px; }
-      .site-nav { justify-content: flex-end; gap: 16px; }
+      .nav-wrap { display: flex; width: calc(100% - 32px); min-height: 62px; justify-content: space-between; gap: 18px; }
+      .site-nav { flex: 1 1 auto; justify-content: flex-end; gap: 16px; }
+      .social-links { flex: 0 0 auto; }
       .site-nav a { font-size: 10px; }
       .container, .site-footer { width: calc(100% - 36px); }
-      .hero { min-height: 690px; }
+      .hero { min-height: 420px; }
       .hero::before { top: 20%; right: -37%; width: 90vw; opacity: .58; }
-      .section-heading { grid-template-columns: 1fr; gap: 22px; }
-      .about-grid, .skills-layout { grid-template-columns: 1fr; }
-      .about-mark { min-height: 250px; }
+      .section-heading { grid-template-columns: 1fr; gap: 18px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .skill-highlights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .about-mark { min-height: 190px; }
       .cert-grid { grid-template-columns: repeat(2, 1fr); }
       .client-list { grid-template-columns: repeat(2, 1fr); }
       .client-list li:nth-child(4n) { border-right: 1px solid rgba(23, 23, 23, .1); }
@@ -443,17 +492,16 @@
       .experience-date { grid-column: 1 / -1; }
       .experience-company { grid-column: 2; grid-row: 2; }
       .project-grid { grid-template-columns: 1fr; }
-      .project-card, .project-card:first-child { min-height: 340px; }
+      .project-card, .project-card:first-child { min-height: 260px; }
     }
     @media (max-width: 520px) {
-      .brand { font-size: 12px; }
       .nav-wrap { width: calc(100% - 24px); gap: 12px; }
       .site-nav { gap: 14px; }
       .site-nav a { font-size: 9px; }
       .container, .site-footer { width: calc(100% - 32px); }
-      .hero { min-height: 650px; padding-block: 92px 100px; }
+      .hero { min-height: 380px; padding-block: 28px 44px; }
       .hero h1 { font-size: clamp(46px, 14vw, 68px); }
-      .hero-note { left: 0; right: auto; }
+      .hero-note { left: 0; right: auto; bottom: 12px; }
       .cert-grid { grid-template-columns: 1fr; }
       .cert-card { min-height: 155px; }
       .resume-panel { align-items: flex-start; flex-direction: column; }
@@ -474,9 +522,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="nav-wrap">
-      <a class="brand" href="#hero" aria-label="Rashmi Tejeswi home">Rashmi Tejeswi</a>
       <nav class="site-nav" aria-label="Main navigation">
-        <a href="#hero">Hero</a>
         <a href="#about">About Me</a>
         <a href="#experience">Experience</a>
         <a href="#clients">Clients</a>
@@ -486,6 +532,14 @@
         <a href="#resume">Resume</a>
         <a href="#contact">Contact</a>
       </nav>
+      <div class="social-links" aria-label="Social profiles">
+        <a class="social-link linkedin" href="https://www.linkedin.com/in/rashmibandary" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.35V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a class="social-link" href="https://github.com/rashmitej" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.645 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+      </div>
     </div>
   </header>
 
@@ -494,12 +548,7 @@
       <div class="hero-content" data-reveal>
         <p class="eyebrow">Portfolio · 2026</p>
         <h1 id="hero-title">Hello, I’m<br><span class="hero-highlight">Rashmi</span><span class="hero-dot">.</span></h1>
-        <p class="hero-copy">I’m a <span class="placeholder">your role or specialty</span> who makes complex ideas feel clear, useful, and human.</p>
-        <div class="hero-actions">
-          <a class="button" href="#projects">Explore my work <span class="arrow" aria-hidden="true">↗</span></a>
-          <a class="button secondary" href="#contact">Let’s connect</a>
-          <a class="button secondary" href="https://github.com/rashmitej" target="_blank" rel="noopener noreferrer">Explore my GitHub <span class="arrow" aria-hidden="true">↗</span></a>
-        </div>
+        <p class="hero-copy">Senior QA Engineer focused on AI testing and AI-assisted test automation, building scalable frameworks and validating LLM and AI-powered applications for accuracy, reliability, and safety.</p>
       </div>
       <p class="hero-note">A little about what I do, and how I do it.</p>
     </section>
@@ -513,7 +562,7 @@
         <div class="about-grid" data-reveal>
           <div class="about-mark" aria-hidden="true"><span>R.</span></div>
           <div class="about-copy">
-            <p>I’m Rashmi Tejeswi, a <span class="placeholder">your role / specialty</span> with a passion for <span class="placeholder">what you love solving</span>.</p>
+            <p>I’m Rashmi Tejeswi, a Senior QA Engineer with a passion for <span class="placeholder">what you love solving</span>.</p>
             <p><span class="placeholder">Add a few sentences about your background, the problems you enjoy solving, and what makes your approach distinct.</span></p>
             <p><span class="placeholder">Add a personal detail or the principle that guides your work.</span></p>
           </div>
@@ -529,19 +578,24 @@
         </div>
         <div class="experience-list" data-reveal>
           <article class="experience-item">
-            <span class="experience-date">Year – Present</span>
-            <div><h3 class="experience-role">Your latest role</h3><p class="experience-detail">Add a concise description of your work and its impact.</p></div>
-            <span class="experience-company">Company name</span>
+            <span class="experience-date">May 2023 – May 2026</span>
+            <div><h3 class="experience-role">Senior Quality Assurance Automation Consultant</h3><p class="experience-detail">CareFirst (FEPOC) · Reston, VA</p></div>
+            <span class="experience-company">CareFirst BlueCross BlueShield</span>
           </article>
           <article class="experience-item">
-            <span class="experience-date">Year – Year</span>
-            <div><h3 class="experience-role">Previous role</h3><p class="experience-detail">Highlight a result, project, or responsibility you’re proud of.</p></div>
-            <span class="experience-company">Company name</span>
+            <span class="experience-date">Mar 2020 – Nov 2022</span>
+            <div><h3 class="experience-role">QA Consultant</h3><p class="experience-detail">CVS/Aetna · New York, NY</p></div>
+            <span class="experience-company">CVS Health</span>
           </article>
           <article class="experience-item">
-            <span class="experience-date">Year – Year</span>
-            <div><h3 class="experience-role">Earlier role</h3><p class="experience-detail">Add another milestone from your professional journey.</p></div>
-            <span class="experience-company">Company name</span>
+            <span class="experience-date">Dec 2019 – Mar 2020</span>
+            <div><h3 class="experience-role">Technical Test Lead</h3><p class="experience-detail">Country Financial · Bloomington, MN</p></div>
+            <span class="experience-company">Infosys</span>
+          </article>
+          <article class="experience-item">
+            <span class="experience-date">July 2016 – Dec 2018</span>
+            <div><h3 class="experience-role">QA Automation Consultant</h3><p class="experience-detail">New York, NY</p></div>
+            <span class="experience-company">JPMorgan Chase</span>
           </article>
         </div>
       </div>
@@ -570,69 +624,102 @@
           <div><span class="section-kicker">04 — What I bring</span><h2>Skills<span style="color:var(--accent)">.</span></h2></div>
           <p class="section-intro">A blend of practical expertise, thoughtful problem-solving, and a curiosity to keep learning.</p>
         </div>
-        <div class="skills-layout" data-reveal>
-          <p class="skills-note">A broad quality engineering toolkit—from programming and automation to cloud platforms and AI/LLM testing.</p>
+        <div class="skills-showcase" data-reveal>
+          <h3 class="skills-subheading">Core strengths</h3>
+          <div class="skill-highlights" aria-label="Core strengths">
+            <article class="skill-highlight"><h3>Test automation</h3><p>Selenium WebDriver, Appium, Playwright, Cypress</p></article>
+            <article class="skill-highlight"><h3>AI &amp; LLM quality</h3><p>RAG testing, LLM evaluation, response validation</p></article>
+            <article class="skill-highlight"><h3>API &amp; services</h3><p>REST, SOAP, GraphQL, Karate DSL, Postman</p></article>
+            <article class="skill-highlight"><h3>Mobile QA</h3><p>Appium, XCUITest, AWS Device Farm</p></article>
+            <article class="skill-highlight"><h3>CI/CD &amp; cloud</h3><p>Jenkins, GitHub Actions, Azure DevOps, AWS</p></article>
+            <article class="skill-highlight"><h3>Quality engineering</h3><p>BDD, end-to-end testing, shift-left, continuous testing</p></article>
+          </div>
+
+          <h3 class="skills-subheading">Full skills toolkit</h3>
           <div class="skill-groups">
-            <div class="skill-group">
-              <h3>Programming Languages</h3>
-              <div class="tags"><span class="tag">Java</span><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">PHP</span><span class="tag">Swift (Intermediate)</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>UI &amp; Mobile Automation</h3>
-              <div class="tags"><span class="tag">Selenium WebDriver</span><span class="tag">Appium</span><span class="tag">XCUITest</span><span class="tag">Playwright</span><span class="tag">Cypress</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>API &amp; Web Services</h3>
-              <div class="tags"><span class="tag">Karate DSL</span><span class="tag">SoapUI</span><span class="tag">REST API</span><span class="tag">SOAP</span><span class="tag">GraphQL</span><span class="tag">XML</span><span class="tag">JSON</span><span class="tag">XPath</span><span class="tag">CSS Selectors</span><span class="tag">Postman</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>Testing Frameworks</h3>
-              <div class="tags"><span class="tag">TestNG</span><span class="tag">JUnit</span><span class="tag">Cucumber</span><span class="tag">BDD/Gherkin</span><span class="tag">Page Object Model (POM)</span><span class="tag">Data-Driven Framework</span><span class="tag">Hybrid Framework</span><span class="tag">Keyword-Driven Framework</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>Build &amp; CI/CD Tools</h3>
-              <div class="tags"><span class="tag">Maven</span><span class="tag">Jenkins</span><span class="tag">GitHub Actions</span><span class="tag">Azure DevOps</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>Version Control</h3>
-              <div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Bitbucket</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>Cloud &amp; DevOps</h3>
-              <div class="tags"><span class="tag">AWS Device Farm</span><span class="tag">Amazon EC2</span><span class="tag">S3</span><span class="tag">IAM</span><span class="tag">CloudWatch</span><span class="tag">AWS Lambda (Basic)</span><span class="tag">AWS CodePipeline</span><span class="tag">Docker</span><span class="tag">Kubernetes (Exposure)</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>AI &amp; LLM Testing</h3>
-              <div class="tags"><span class="tag">Prompt Engineering</span><span class="tag">Prompt Validation</span><span class="tag">LLM Evaluation</span><span class="tag">AI Model Testing</span><span class="tag">RAG Testing</span><span class="tag">Hallucination Detection</span><span class="tag">AI Response Validation</span><span class="tag">AI-Assisted Test Design</span><span class="tag">Synthetic Test Data Generation</span><span class="tag">AI Test Case Generation</span><span class="tag">Responsible AI Testing</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>AI-Assisted Development</h3>
-              <div class="tags"><span class="tag">GitHub Copilot</span><span class="tag">Copilot Chat</span><span class="tag">Ollama (Local LLMs)</span><span class="tag">Claude AI</span><span class="tag">ChatGPT</span><span class="tag">AI-Generated Test Creation</span><span class="tag">AI-Driven Self-Healing Locators</span><span class="tag">AI-Powered Code Review</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>Databases</h3>
-              <div class="tags"><span class="tag">SQL</span><span class="tag">SQL Server</span><span class="tag">MySQL</span><span class="tag">Oracle</span><span class="tag">PostgreSQL</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>Test Management &amp; Collaboration</h3>
-              <div class="tags"><span class="tag">JIRA</span><span class="tag">Rally</span><span class="tag">Confluence</span><span class="tag">Zephyr</span><span class="tag">Xray</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>Mobile &amp; Development Tooling</h3>
-              <div class="tags"><span class="tag">Eclipse</span><span class="tag">VS Code</span><span class="tag">Xcode</span><span class="tag">Android Studio SDK</span><span class="tag">CocoaPods</span><span class="tag">Charles Proxy</span><span class="tag">Appium Inspector</span><span class="tag">UI Automator Viewer</span><span class="tag">New Relic</span><span class="tag">Figma</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>Observability &amp; Monitoring</h3>
-              <div class="tags"><span class="tag">New Relic</span><span class="tag">CloudWatch</span><span class="tag">Application Monitoring</span><span class="tag">Log Analysis</span><span class="tag">Production Validation</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>Testing Types</h3>
-              <div class="tags"><span class="tag">Functional</span><span class="tag">Regression</span><span class="tag">Smoke</span><span class="tag">Sanity</span><span class="tag">Integration</span><span class="tag">System</span><span class="tag">End-to-End (E2E)</span><span class="tag">API Testing</span><span class="tag">Database Testing</span><span class="tag">Mobile Testing</span><span class="tag">Cross-Browser Testing</span><span class="tag">Parallel Testing</span><span class="tag">Backend Testing</span><span class="tag">UAT</span><span class="tag">Accessibility Testing</span><span class="tag">AI/LLM Testing</span></div>
-            </div>
-            <div class="skill-group">
-              <h3>Methodologies</h3>
-              <div class="tags"><span class="tag">Agile (Scrum)</span><span class="tag">SAFe/Scaled Agile</span><span class="tag">Waterfall</span><span class="tag">SDLC</span><span class="tag">STLC</span><span class="tag">Shift-Left Testing</span><span class="tag">Continuous Testing</span><span class="tag">Quality Engineering</span></div>
-            </div>
+            <details class="skill-accordion">
+              <summary><span>Test Engineering</span><span class="skill-accordion-count">5 categories</span></summary>
+              <div class="skill-accordion-content">
+                <div class="skill-group">
+                  <h3>UI &amp; Mobile Automation</h3>
+                  <div class="tags"><span class="tag">Selenium WebDriver</span><span class="tag">Appium</span><span class="tag">XCUITest</span><span class="tag">Playwright</span><span class="tag">Cypress</span></div>
+                </div>
+                <div class="skill-group">
+                  <h3>API &amp; Web Services</h3>
+                  <div class="tags"><span class="tag">Karate DSL</span><span class="tag">SoapUI</span><span class="tag">REST API</span><span class="tag">SOAP</span><span class="tag">GraphQL</span><span class="tag">XML</span><span class="tag">JSON</span><span class="tag">XPath</span><span class="tag">CSS Selectors</span><span class="tag">Postman</span></div>
+                </div>
+                <div class="skill-group">
+                  <h3>Testing Frameworks</h3>
+                  <div class="tags"><span class="tag">TestNG</span><span class="tag">JUnit</span><span class="tag">Cucumber</span><span class="tag">BDD/Gherkin</span><span class="tag">Page Object Model (POM)</span><span class="tag">Data-Driven Framework</span><span class="tag">Hybrid Framework</span><span class="tag">Keyword-Driven Framework</span></div>
+                </div>
+                <div class="skill-group">
+                  <h3>Testing Types</h3>
+                  <div class="tags"><span class="tag">Functional</span><span class="tag">Regression</span><span class="tag">Smoke</span><span class="tag">Sanity</span><span class="tag">Integration</span><span class="tag">System</span><span class="tag">End-to-End (E2E)</span><span class="tag">API Testing</span><span class="tag">Database Testing</span><span class="tag">Mobile Testing</span><span class="tag">Cross-Browser Testing</span><span class="tag">Parallel Testing</span><span class="tag">Backend Testing</span><span class="tag">UAT</span><span class="tag">Accessibility Testing</span><span class="tag">AI/LLM Testing</span></div>
+                </div>
+                <div class="skill-group">
+                  <h3>Methodologies</h3>
+                  <div class="tags"><span class="tag">Agile (Scrum)</span><span class="tag">SAFe/Scaled Agile</span><span class="tag">Waterfall</span><span class="tag">SDLC</span><span class="tag">STLC</span><span class="tag">Shift-Left Testing</span><span class="tag">Continuous Testing</span><span class="tag">Quality Engineering</span></div>
+                </div>
+              </div>
+            </details>
+
+            <details class="skill-accordion">
+              <summary><span>AI &amp; LLM</span><span class="skill-accordion-count">2 categories</span></summary>
+              <div class="skill-accordion-content">
+                <div class="skill-group">
+                  <h3>AI &amp; LLM Testing</h3>
+                  <div class="tags"><span class="tag">Prompt Engineering</span><span class="tag">Prompt Validation</span><span class="tag">LLM Evaluation</span><span class="tag">AI Model Testing</span><span class="tag">RAG Testing</span><span class="tag">Hallucination Detection</span><span class="tag">AI Response Validation</span><span class="tag">AI-Assisted Test Design</span><span class="tag">Synthetic Test Data Generation</span><span class="tag">AI Test Case Generation</span><span class="tag">Responsible AI Testing</span></div>
+                </div>
+                <div class="skill-group">
+                  <h3>AI-Assisted Development</h3>
+                  <div class="tags"><span class="tag">GitHub Copilot</span><span class="tag">Copilot Chat</span><span class="tag">Ollama (Local LLMs)</span><span class="tag">Claude AI</span><span class="tag">ChatGPT</span><span class="tag">AI-Generated Test Creation</span><span class="tag">AI-Driven Self-Healing Locators</span><span class="tag">AI-Powered Code Review</span></div>
+                </div>
+              </div>
+            </details>
+
+            <details class="skill-accordion">
+              <summary><span>Cloud &amp; Delivery</span><span class="skill-accordion-count">4 categories</span></summary>
+              <div class="skill-accordion-content">
+                <div class="skill-group">
+                  <h3>Build &amp; CI/CD Tools</h3>
+                  <div class="tags"><span class="tag">Maven</span><span class="tag">Jenkins</span><span class="tag">GitHub Actions</span><span class="tag">Azure DevOps</span></div>
+                </div>
+                <div class="skill-group">
+                  <h3>Version Control</h3>
+                  <div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Bitbucket</span></div>
+                </div>
+                <div class="skill-group">
+                  <h3>Cloud &amp; DevOps</h3>
+                  <div class="tags"><span class="tag">AWS Device Farm</span><span class="tag">Amazon EC2</span><span class="tag">S3</span><span class="tag">IAM</span><span class="tag">CloudWatch</span><span class="tag">AWS Lambda (Basic)</span><span class="tag">AWS CodePipeline</span><span class="tag">Docker</span><span class="tag">Kubernetes (Exposure)</span></div>
+                </div>
+                <div class="skill-group">
+                  <h3>Observability &amp; Monitoring</h3>
+                  <div class="tags"><span class="tag">New Relic</span><span class="tag">CloudWatch</span><span class="tag">Application Monitoring</span><span class="tag">Log Analysis</span><span class="tag">Production Validation</span></div>
+                </div>
+              </div>
+            </details>
+
+            <details class="skill-accordion">
+              <summary><span>Data &amp; Tools</span><span class="skill-accordion-count">4 categories</span></summary>
+              <div class="skill-accordion-content">
+                <div class="skill-group">
+                  <h3>Programming Languages</h3>
+                  <div class="tags"><span class="tag">Java</span><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">PHP</span><span class="tag">Swift (Intermediate)</span></div>
+                </div>
+                <div class="skill-group">
+                  <h3>Databases</h3>
+                  <div class="tags"><span class="tag">SQL</span><span class="tag">SQL Server</span><span class="tag">MySQL</span><span class="tag">Oracle</span><span class="tag">PostgreSQL</span></div>
+                </div>
+                <div class="skill-group">
+                  <h3>Test Management &amp; Collaboration</h3>
+                  <div class="tags"><span class="tag">JIRA</span><span class="tag">Rally</span><span class="tag">Confluence</span><span class="tag">Zephyr</span><span class="tag">Xray</span></div>
+                </div>
+                <div class="skill-group">
+                  <h3>Mobile &amp; Development Tooling</h3>
+                  <div class="tags"><span class="tag">Eclipse</span><span class="tag">VS Code</span><span class="tag">Xcode</span><span class="tag">Android Studio SDK</span><span class="tag">CocoaPods</span><span class="tag">Charles Proxy</span><span class="tag">Appium Inspector</span><span class="tag">UI Automator Viewer</span><span class="tag">New Relic</span><span class="tag">Figma</span></div>
+                </div>
+              </div>
+            </details>
           </div>
         </div>
       </div>
@@ -685,8 +772,11 @@
           <p class="section-intro">Want the full picture? Keep your latest resume close at hand.</p>
         </div>
         <div class="resume-panel" data-reveal>
-          <div><h3>My experience, in one place.</h3><p>Add your resume PDF to the project and link it here.</p></div>
-          <a class="button" href="#contact">Resume coming soon <span class="arrow" aria-hidden="true">↗</span></a>
+          <div><h3>My experience, in one place.</h3><p id="resume-note">Upload your resume PDF to enable viewing and downloading.</p></div>
+          <div class="resume-actions" aria-describedby="resume-note">
+            <button class="button" type="button" disabled>View resume</button>
+            <button class="button secondary" type="button" disabled>Download resume</button>
+          </div>
         </div>
       </div>
     </section>
@@ -707,8 +797,10 @@
     <span>© <span id="year">2026</span> Rashmi Tejeswi</span>
     <div class="footer-links">
       <a href="#hero">Back to top ↑</a>
-      <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
-      <a href="https://github.com/rashmitej" target="_blank" rel="noreferrer">GitHub</a>
+      <a class="location-link" href="https://www.google.com/maps/search/?api=1&amp;query=Tampa%2C%20Florida" target="_blank" rel="noopener noreferrer" aria-label="View Tampa, Florida on Google Maps">
+        <svg class="location-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5.5-8 12-8 12S4 15.5 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <span>Tampa, Florida</span>
+      </a>
     </div>
   </footer>
 
