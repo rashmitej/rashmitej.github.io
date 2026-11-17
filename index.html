@@ -186,12 +186,18 @@
       animation: headline-glow 6s ease-in-out infinite alternate;
     }
     .hero h1 .hero-dot { color: var(--accent); }
-    .hero-copy {
-      max-width: 690px;
-      margin-bottom: 22px;
-      color: #62605c;
-      font-size: clamp(15px, 1.5vw, 17px);
+    .hero-tagline {
+      max-width: 700px;
+      margin: 0;
+      padding-left: 14px;
+      border-left: 2px solid var(--accent);
+      color: #56545e;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(18px, 2.1vw, 22px);
+      line-height: 1.35;
+      letter-spacing: -.02em;
     }
+    .hero-tagline span { color: var(--accent); font-style: italic; }
     .button {
       display: inline-flex;
       min-height: 48px;
@@ -501,7 +507,7 @@
       .container, .site-footer { width: calc(100% - 32px); }
       .hero { min-height: 380px; padding-block: 28px 44px; }
       .hero h1 { font-size: clamp(46px, 14vw, 68px); }
-      .hero-note { left: 0; right: auto; bottom: 12px; }
+      .hero-note { position: static; justify-self: end; margin: 18px 0 0; }
       .cert-grid { grid-template-columns: 1fr; }
       .cert-card { min-height: 155px; }
       .resume-panel { align-items: flex-start; flex-direction: column; }
@@ -548,7 +554,7 @@
       <div class="hero-content" data-reveal>
         <p class="eyebrow">Portfolio · 2026</p>
         <h1 id="hero-title">Hello, I’m<br><span class="hero-highlight">Rashmi</span><span class="hero-dot">.</span></h1>
-        <p class="hero-copy">Senior QA Engineer focused on AI testing and AI-assisted test automation, building scalable frameworks and validating LLM and AI-powered applications for accuracy, reliability, and safety.</p>
+        <p class="hero-tagline">Shipping Products with confidence starts <span>testing with purpose</span></p>
       </div>
       <p class="hero-note">A little about what I do, and how I do it.</p>
     </section>
@@ -557,12 +563,11 @@
       <div class="container">
         <div class="section-heading" data-reveal>
           <div><span class="section-kicker">01 — The person behind the work</span><h2>About me<span style="color:var(--accent)">.</span></h2></div>
-          <p class="section-intro">A quick introduction to the person, perspective, and purpose behind the work.</p>
         </div>
         <div class="about-grid" data-reveal>
           <div class="about-mark" aria-hidden="true"><span>R.</span></div>
           <div class="about-copy">
-            <p>I’m Rashmi Tejeswi, a Senior QA Engineer with a passion for <span class="placeholder">what you love solving</span>.</p>
+            <p>I’m Rashmi Tejeswi, a Senior QA Engineer focused on AI testing and AI-assisted test automation, building scalable frameworks and validating LLM and AI-powered applications for accuracy, reliability, and safety.</p>
             <p><span class="placeholder">Add a few sentences about your background, the problems you enjoy solving, and what makes your approach distinct.</span></p>
             <p><span class="placeholder">Add a personal detail or the principle that guides your work.</span></p>
           </div>
